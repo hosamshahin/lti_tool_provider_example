@@ -1,2 +1,33 @@
-<h1 style="text-align: center">Basic Lti Launch Request</h1>
-<%= render "message_info" %>
+<script>
+	(function() {
+	  var TP = {};
+	  <% if @tp['outcome_service'] == true %>
+		  TP.outcomeService = true;
+	  <% else %>
+	  	TP.outcomeService = false;
+	  <% end %>
+	  TP.ODSAParams = {};
+	  TP.toParams = {};
+	  TP.toParams.launch_params = {};
+	  <% @tp['to_params'].each do |key, value| %>
+	    TP.toParams.launch_params.<%= key %> = "<%= value %>";
+	  <% end%>
+
+	  TP.ODSAParams.problem_url = "<%= @tp['params']["problem_url"] %>";
+	  TP.ODSAParams.short_name = "<%= @tp['params']["short_name"] %>";
+	  TP.ODSAParams.gradeable_exercise = "<%= @tp['params']["gradeable_exercise"] %>";
+	  TP.ODSAParams.section_name = "<%= @tp['params']["section_name"] %>";
+	  TP.ODSAParams.problem_type = "<%= @tp['params']["problem_type"] %>";
+	  TP.ODSAParams["JOP-lang"] = "<%= @tp['params']["JOP-lang"] %>";
+	  TP.ODSAParams["JXOP-feedback"] = "<%= @tp['params']["JXOP-feedback"] %>";
+	  TP.ODSAParams["JXOP-fixmode"] = "<%= @tp['params']["JXOP-fixmode"] %>";
+	  TP.ODSAParams["JXOP-code"] = "<%= @tp['params']["JXOP-code"] %>";
+	  TP.ODSAParams["JXOP-debug"] = "<%= @tp['params']["JXOP-debug"] %>";
+	  TP.ODSAParams["threshold"] = "<%= @tp['params']["threshold"] %>";
+
+	  window.ODSA = window.ODSA || {};
+	  window.ODSA.TP = TP;
+	}());
+</script>
+
+<%= @section_html.html_safe %>

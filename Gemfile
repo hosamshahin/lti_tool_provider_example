@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.6'
+# ruby '2.1.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -57,3 +57,5 @@ gem 'simple_oauth', '0.2.0'
 gem 'lodash-rails', '~> 3.7.0'
 
 gem 'therubyracer'
+
+gem 'thin'
